@@ -1,0 +1,88 @@
+Main Circuit 
+
+.include TSMC_180nm.txt
+.include nand.sub
+.include not.sub
+.include and.sub
+.include or.sub
+.include xor.sub
+.include xnor.sub
+.include enable.sub
+.include add_subs.sub
+.include fa.sub
+.include comparator.sub
+.include and_block.sub
+
+.param SUPPLY = 1.8
+.param LAMBDA = 0.18u
+
+.param wn1 = {10*LAMBDA}
+.param wn2 = {10*LAMBDA}
+.param ln1 = {2*LAMBDA}
+.param ln2 = {2*LAMBDA}
+
+.param wp1 = wn1
+.param wp2 = wn1
+.param lp1 = {LAMBDA}
+.param lp2 = {LAMBDA}
+
+.global gnd
+
+Vdd n_x gnd 'SUPPLY'
+V_m_add n_add gnd 0
+V_m_subs n_subs gnd 1
+
+V_a0 n_a0 gnd PULSE(0 1.8 0ns 100ps 100ps 100ns 400ns)
+V_a1 n_a1 gnd PULSE(0 1.8 0ns 100ps 100ps 50ns 600ns)
+V_a2 n_a2 gnd PULSE(0 1.8 0ns 100ps 100ps 400ns 800ns)
+V_a3 n_a3 gnd PULSE(0 1.8 0ns 100ps 100ps 200ns 400ns)
+V_b0 n_b0 gnd PULSE(0 1.8 0ns 100ps 100ps 50ns 600ns)
+V_b1 n_b1 gnd PULSE(0 1.8 0ns 100ps 100ps 100ns 800ns)
+V_b2 n_b2 gnd PULSE(0 1.8 0ns 100ps 100ps 200ns 400ns)
+V_b3 n_b3 gnd PULSE(0 1.8 0ns 100ps 100ps 400ns 800ns)
+V_s0 n_s0 gnd PULSE(1.8 0 0ns 100ps 100ps 199ns 400ns)
+V_s1 n_s1 gnd PULSE(1.8 0 0ns 100ps 100ps 399ns 800ns)
+
+* V_a0 n_a0 gnd 'SUPPLY'
+* V_a1 n_a1 gnd 0
+* V_a2 n_a2 gnd 'SUPPLY'
+* V_a3 n_a3 gnd 'SUPPLY'
+* V_b0 n_b0 gnd 0
+* V_b1 n_b1 gnd 'SUPPLY'
+* V_b2 n_b2 gnd 'SUPPLY'
+* V_b3 n_b3 gnd 0
+* V_s0 n_s0 gnd 1
+* V_s1 n_s1 gnd 0
+
+
+X1 n_s0 n_s1 n_d0 n_d1 n_d2 n_d3 n_x gnd enable
+
+X2 n_a0 n_a1 n_a2 n_a3 n_b0 n_b1 n_b2 n_b3 n_add n_d0 n_s0a n_s1a n_s2a n_s3a n_couta n_x gnd add_subs
+
+X3 n_a0 n_a1 n_a2 n_a3 n_b0 n_b1 n_b2 n_b3 n_subs n_d1 n_s0s n_s1s n_s2s n_s3s n_couts n_x gnd add_subs
+
+X4 n_b0 n_b1 n_b2 n_b3 n_b0 n_a1 n_a2 n_a3 n_d2 n_l n_eq n_gr n_x gnd comparator
+
+X5 n_a0 n_a1 n_a2 n_a3 n_b0 n_b1 n_b2 n_b3 n_d3 n_and0 n_and1 n_and2 n_and3 n_x gnd and_block
+
+
+
+*C1 n_cout gnd 100f
+*C2 n_sout gnd 100f
+
+
+.tran 1n 800n
+
+
+.control
+run
+* set color0 = rgb:f/f/e
+* set color1 = black
+plot v(n_a0) v(n_a1)+2 v(n_a2)+4 v(n_a3)+6 v(n_b0)+8 v(n_b1)+10 v(n_b2)+12 v(n_b3)+14 title "Inputs"
+plot v(n_s0) v(n_s1)+2 title "Select Lines"
+plot v(n_s0a) v(n_s1a)+2 v(n_s2a)+4 v(n_s3a)+6 v(n_couta)+8 title "Addition Operation"
+plot v(n_s0s) v(n_s1s)+2 v(n_s2s)+4 v(n_s3s)+6 v(n_couts)+8 title "Subtraction Operation"
+plot v(n_l) v(n_eq)+2 v(n_gr)+4 title "Comparator"
+plot v(n_and0) v(n_and1)+2 v(n_and2)+4 v(n_and3)+6 title "And Operation"
+.end
+.endc

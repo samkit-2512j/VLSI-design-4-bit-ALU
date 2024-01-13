@@ -1,0 +1,63 @@
+.subckt comparator n_a0 n_a1 n_a2 n_a3 n_b0 n_b1 n_b2 n_b3 n_d2 n_l n_eq n_gr vdd gnd
+
+    X_a0 n_d2 n_a0 n_ena0 vdd gnd and
+    X_a1 n_d2 n_a1 n_ena1 vdd gnd and
+    X_a2 n_d2 n_a2 n_ena2 vdd gnd and
+    X_a3 n_d2 n_a3 n_ena3 vdd gnd and
+
+    X_b0 n_d2 n_b0 n_enb0 vdd gnd and
+    X_b1 n_d2 n_b1 n_enb1 vdd gnd and
+    X_b2 n_d2 n_b2 n_enb2 vdd gnd and
+    X_b3 n_d2 n_b3 n_enb3 vdd gnd and
+
+    X1 n_ena0 n_enb0 n_w0 vdd gnd xnor
+    X2 n_ena1 n_enb1 n_w1 vdd gnd xnor 
+    X3 n_ena2 n_enb2 n_w2 vdd gnd xnor 
+    X4 n_ena3 n_enb3 n_w3 vdd gnd xnor 
+
+    X5 n_ena3 n_a3d vdd gnd not
+    X6 n_ena2 n_a2d vdd gnd not
+    X7 n_ena1 n_a1d vdd gnd not
+    X8 n_ena0 n_a0d vdd gnd not
+
+    X9 n_enb3 n_b3d vdd gnd not
+    X10 n_enb2 n_b2d vdd gnd not
+    X11 n_enb1 n_b1d vdd gnd not
+    X12 n_enb0 n_b0d vdd gnd not
+
+    X13 n_ena3 n_b3d n_g3 vdd gnd and
+    X14 n_ena2 n_b2d n_jg2 vdd gnd and
+    X15 n_jg2 n_w3 n_g2 vdd gnd and
+    X16 n_ena1 n_b1d n_jg1a vdd gnd and
+    X17 n_w3 n_w2 n_jg1b vdd gnd and
+    X18 n_jg1a n_jg1b n_g1 vdd gnd and
+    X19 n_ena0 n_b0d n_jg0a vdd gnd and
+    X200 n_w3 n_w2 n_jg0b vdd gnd and
+    X201 n_jg0a n_jg0b n_jg0c vdd gnd and
+    X202 n_jg0c n_w1 n_g0 vdd gnd and
+
+    X20 n_enb3 n_a3d n_l3 vdd gnd and
+    X21 n_enb2 n_a2d n_jl2 vdd gnd and
+    X22 n_jl2 n_w3 n_l2 vdd gnd and
+    X23 n_enb1 n_a1d n_jl1a vdd gnd and
+    X24 n_w3 n_w2 n_jl1b vdd gnd and
+    X25 n_jl1a n_jl1b n_l1 vdd gnd and
+    X26 n_enb0 n_a0d n_jl0a vdd gnd and
+    X27 n_w3 n_w2 n_jl0b vdd gnd and
+    X28 n_jl0a n_jl0b n_jl0c vdd gnd and
+    X29 n_jl0c n_w1 n_l0 vdd gnd and
+
+    X30 n_g3 n_g2 n_jga vdd gnd or
+    X31 n_g1 n_g0 n_jgb vdd gnd or
+    X32 n_jga n_jgb n_gr vdd gnd or
+
+    X33 n_w3 n_w2 n_jeqa vdd gnd and
+    X34 n_w1 n_w0 n_jeqb vdd gnd and
+    X35 n_jeqa n_jeqb n_q0 vdd gnd and
+    X36 n_q0 n_d2 n_eq vdd gnd and
+
+    X37 n_l3 n_l2 n_jla vdd gnd or
+    X38 n_l1 n_l0 n_jlb vdd gnd or
+    X39 n_jla n_jlb n_l vdd gnd or
+
+.ends comparator

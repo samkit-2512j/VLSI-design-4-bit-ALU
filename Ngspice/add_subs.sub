@@ -1,0 +1,25 @@
+.subckt add_subs n_a0 n_a1 n_a2 n_a3 n_b0 n_b1 n_b2 n_b3 n_m n_d n_s0 n_s1 n_s2 n_s3 n_cout vdd gnd
+
+    X_a0 n_d n_a0 n_ena0 vdd gnd and
+    X_a1 n_d n_a1 n_ena1 vdd gnd and
+    X_a2 n_d n_a2 n_ena2 vdd gnd and
+    X_a3 n_d n_a3 n_ena3 vdd gnd and
+
+    X_b0 n_d n_b0 n_enb0 vdd gnd and
+    X_b1 n_d n_b1 n_enb1 vdd gnd and
+    X_b2 n_d n_b2 n_enb2 vdd gnd and
+    X_b3 n_d n_b3 n_enb3 vdd gnd and
+
+    Xm n_m n_d n_m1 vdd gnd and
+
+    X1 n_m1 n_enb0 n_w0 vdd gnd xor
+    X2 n_m1 n_enb1 n_w1 vdd gnd xor 
+    X3 n_m1 n_enb2 n_w2 vdd gnd xor 
+    X4 n_m1 n_enb3 n_w3 vdd gnd xor 
+
+    X5 n_ena0 n_w0 n_m1 n_c0 n_s0 vdd gnd fa
+    X6 n_ena1 n_w1 n_c0 n_c1 n_s1 vdd gnd fa
+    X7 n_ena2 n_w2 n_c1 n_c2 n_s2 vdd gnd fa
+    X8 n_ena3 n_w3 n_c2 n_cout n_s3 vdd gnd fa
+
+.ends add_subs

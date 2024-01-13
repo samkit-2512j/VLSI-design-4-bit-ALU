@@ -1,0 +1,7 @@
+.subckt and n_a n_b n_out vdd gnd
+
+X1 n_a n_b n_c vdd gnd nand
+X2 n_c n_c n_out vdd gnd nand
+
+*C1 n_out gnd 100f
+.ends and

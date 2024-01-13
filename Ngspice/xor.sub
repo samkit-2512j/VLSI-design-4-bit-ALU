@@ -1,0 +1,9 @@
+.subckt xor n_a n_b n_out vdd gnd
+
+X1 n_a n_b n_c vdd gnd nand
+X2 n_a n_c n_d vdd gnd nand
+X3 n_b n_c n_e vdd gnd nand
+X4 n_e n_d n_out vdd gnd nand
+
+*C1 n_out gnd 100f
+.ends xor

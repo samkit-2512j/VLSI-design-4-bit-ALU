@@ -1,0 +1,7 @@
+.subckt fa n_a n_b n_c n_cout n_sout vdd gnd
+    X1 n_a n_b n_d vdd gnd xor
+    X2 n_a n_b n_e vdd gnd and
+    X3 n_d n_c n_sout vdd gnd xor
+    X4 n_d n_c n_f vdd gnd and
+    X5 n_e n_f n_cout vdd gnd or
+.ends fa

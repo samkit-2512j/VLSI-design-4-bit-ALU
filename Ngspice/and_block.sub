@@ -1,0 +1,18 @@
+.subckt and_block n_a0 n_a1 n_a2 n_a3 n_b0 n_b1 n_b2 n_b3 n_d3 n_w0 n_w1 n_w2 n_w3 vdd gnd
+
+    X_a0 n_d3 n_a0 n_ena0 vdd gnd and
+    X_a1 n_d3 n_a1 n_ena1 vdd gnd and
+    X_a2 n_d3 n_a2 n_ena2 vdd gnd and
+    X_a3 n_d3 n_a3 n_ena3 vdd gnd and
+
+    X_b0 n_d3 n_b0 n_enb0 vdd gnd and
+    X_b1 n_d3 n_b1 n_enb1 vdd gnd and
+    X_b2 n_d3 n_b2 n_enb2 vdd gnd and
+    X_b3 n_d3 n_b3 n_enb3 vdd gnd and
+    
+    X1 n_ena0 n_enb0 n_w0 vdd gnd and
+    X2 n_ena1 n_enb1 n_w1 vdd gnd and 
+    X3 n_ena2 n_enb2 n_w2 vdd gnd and 
+    X4 n_ena3 n_enb3 n_w3 vdd gnd and 
+    
+.ends and_block

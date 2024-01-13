@@ -1,0 +1,11 @@
+.subckt enable n_s0 n_s1 n_d0 n_d1 n_d2 n_d3 vdd gnd
+
+X1 n_s0 n_s0d vdd gnd not
+X2 n_s1 n_s1d vdd gnd not
+
+X3 n_s1d n_s0d n_d0 vdd gnd and
+X4 n_s1d n_s0 n_d1 vdd gnd and
+X5 n_s1 n_s0d n_d2 vdd gnd and
+X6 n_s1 n_s0 n_d3 vdd gnd and
+
+.ends enable

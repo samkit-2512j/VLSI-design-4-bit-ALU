@@ -1,0 +1,8 @@
+.subckt or n_a n_b n_out vdd gnd
+
+X1 n_a n_c vdd gnd not
+X2 n_b n_d vdd gnd not
+X3 n_c n_d n_out vdd gnd nand
+
+*C1 n_out gnd 100f
+.ends or
